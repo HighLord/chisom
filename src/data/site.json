@@ -1,0 +1,33 @@
+{
+  "name": "Iheze Precious Chisom",
+  "role": "Conversion Copywriter",
+  "tagline": "Words that turn readers into customers.",
+  "photo": "",
+  "email": "Chisomiheze@gmail.com",
+  "about": [
+    "Replace this with Chisom's own words about who she is and how she works.",
+    "A second short paragraph can tell visitors what clients can expect when they work with her."
+  ],
+  "services": [
+    { "title": "Conversion copywriting", "text": "Website, landing page and sales copy that moves readers to act." },
+    { "title": "Content marketing", "text": "Articles and campaigns that attract the right audience and keep them reading." },
+    { "title": "Marketing strategies", "text": "Clear plans that connect your message to your business goals." }
+  ],
+  "skills": ["Conversion copywriting", "Content marketing", "Marketing strategy", "Brand voice", "Email copy", "SEO writing"],
+  "logos": [
+    { "name": "Client one", "image": "" },
+    { "name": "Client two", "image": "" },
+    { "name": "Client three", "image": "" },
+    { "name": "Client four", "image": "" },
+    { "name": "Client five", "image": "" }
+  ],
+  "testimonials": [
+    { "quote": "Add a client's kind words about working with Chisom here.", "author": "Client name", "role": "Company" },
+    { "quote": "A second client's kind words can go here.", "author": "Client name", "role": "Company" }
+  ],
+  "social": [
+    { "label": "LinkedIn", "url": "" },
+    { "label": "Facebook", "url": "" },
+    { "label": "X", "url": "" }
+  ]
+}

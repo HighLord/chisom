@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "sample-project-1",
+    "title": "Sample project 1",
+    "category": "Website copy",
+    "summary": "A short sentence about what this piece of writing achieved.",
+    "skills": ["Conversion copywriting", "Messaging"],
+    "cover": "",
+    "link": "",
+    "body": ["Describe the project here: the client's problem, what was written, and the result."]
+  },
+  {
+    "slug": "sample-project-2",
+    "title": "Sample project 2",
+    "category": "Email marketing",
+    "summary": "A short sentence about what this piece of writing achieved.",
+    "skills": ["Email copy", "Storytelling"],
+    "cover": "",
+    "link": "",
+    "body": ["Describe the project here."]
+  },
+  {
+    "slug": "sample-project-3",
+    "title": "Sample project 3",
+    "category": "Content strategy",
+    "summary": "A short sentence about what this piece of writing achieved.",
+    "skills": ["Content marketing", "SEO writing"],
+    "cover": "",
+    "link": "",
+    "body": ["Describe the project here."]
+  }
+]
