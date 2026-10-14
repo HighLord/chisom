@@ -1,82 +1,33 @@
 {
-  "name": "Iheze Precious Chisom",
-  "role": "Conversion Copywriter",
-  "tagline": "Words that turn readers into customers.",
-  "photo": "",
-  "email": "Chisomiheze@gmail.com",
+  "name": "Iheze Chisom Precious",
+  "role": "Content Writer | Copywriter",
+  "tagline": "Words that build brands, tell stories, and inspire action.",
+  "photo": "/images/chisom.png",
+  "email": "your-email@example.com",
   "about": [
-    "Replace this with Chisom's own words about who she is and how she works.",
-    "A second short paragraph can tell visitors what clients can expect when they work with her."
+    "I am Iheze Chisom Precious, a content writer and copywriter passionate about transforming ideas into powerful stories and persuasive messages.",
+    "I create strategic content that helps brands communicate clearly, connect with their audience, and inspire meaningful action through storytelling."
   ],
-  "services": [
-    {
-      "title": "Conversion copywriting",
-      "text": "Website, landing page and sales copy that moves readers to act."
-    },
-    {
-      "title": "Content marketing",
-      "text": "Articles and campaigns that attract the right audience and keep them reading."
-    },
-    {
-      "title": "Marketing strategies",
-      "text": "Clear plans that connect your message to your business goals."
-    }
-  ],
+  "services": [],
   "skills": [
-    "Conversion copywriting",
-    "Content marketing",
-    "Marketing strategy",
-    "Brand voice",
-    "Email copy",
-    "SEO writing"
+    "Website Copy",
+    "Email Marketing",
+    "Sales Copy",
+    "Blog Writing",
+    "SEO Content",
+    "Brand Storytelling"
   ],
-  "logos": [
-    {
-      "name": "Client one",
-      "image": ""
-    },
-    {
-      "name": "Client two",
-      "image": ""
-    },
-    {
-      "name": "Client three",
-      "image": ""
-    },
-    {
-      "name": "Client four",
-      "image": ""
-    },
-    {
-      "name": "Client five",
-      "image": ""
-    }
-  ],
-  "testimonials": [
-    {
-      "quote": "Add a client's kind words about working with Chisom here.",
-      "author": "Client name",
-      "role": "Company"
-    },
-    {
-      "quote": "A second client's kind words can go here.",
-      "author": "Client name",
-      "role": "Company"
-    }
-  ],
+  "logos": [],
+  "testimonials": [],
   "social": [
     {
       "label": "LinkedIn",
-      "url": ""
+      "url": "https://linkedin.com/in/your-profile"
     },
     {
-      "label": "Facebook",
-      "url": ""
-    },
-    {
-      "label": "X",
-      "url": ""
+      "label": "WhatsApp",
+      "url": "https://wa.me/2347030999375"
     }
   ],
-  "intro": "Hi, I'm Chisom. I write conversion-focused copy, content and marketing strategies that help businesses grow."
+  "intro": "I craft compelling content, conversion-focused copy, and engaging narratives that help businesses stand out and build stronger relationships with their audiences."
 }

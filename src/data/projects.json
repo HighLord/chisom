@@ -1,26 +1,42 @@
 [
   {
-    "title": "Copywriting Portfolio",
-    "brand": "Copywriting",
-    "category": "Copywriting",
-    "summary": "A collection of copywriting samples.",
-    "cta": "Open folder",
+    "title": "Website Copy Portfolio",
+    "brand": "Website Copy",
+    "category": "Website Copy",
+    "summary": "Landing pages, website content, and brand messaging samples.",
+    "cta": "View Sample",
     "link": "https://drive.google.com/drive/folders/1-1PskNkfbwGi7HTF9TEwBRxHwrobkA0l"
   },
   {
-    "title": "My Copywriting Portfolio",
+    "title": "Email Marketing Portfolio",
+    "brand": "Email Marketing",
+    "category": "Email Marketing",
+    "summary": "Welcome sequences, onboarding emails, sales emails, and customer engagement campaigns.",
+    "cta": "View Sample",
+    "link": "https://drive.google.com/drive/folders/1-JBAn79Kz_mEL2UBrDpYkxDjaafYg8Ue"
+  },
+  {
+    "title": "Copywriting Collection",
     "brand": "Copywriting",
     "category": "Copywriting",
-    "summary": "More copywriting samples.",
-    "cta": "Open folder",
+    "summary": "A collection of persuasive copywriting samples and marketing content.",
+    "cta": "View Sample",
     "link": "https://drive.google.com/drive/folders/1P92F4DvJqeWMRl0KMbbZC2wErSOeLx-X"
   },
   {
     "title": "Prodigy Website Content",
-    "brand": "Prodigy",
+    "brand": "Website Content",
     "category": "Website Content",
-    "summary": "Website copy written for Prodigy.",
-    "cta": "Open folder",
+    "summary": "Website pages and content created for Prodigy.",
+    "cta": "View Sample",
+    "link": "https://drive.google.com/drive/folders/1wE1NPFNUEFWSYHNmeZeydugWa3D0w0mK"
+  },
+  {
+    "title": "Advertising & Sales Scripts",
+    "brand": "Advertising Copy",
+    "category": "Advertising Copy",
+    "summary": "Creative advertisements, sales copy, and video script samples.",
+    "cta": "View Sample",
     "link": "https://drive.google.com/drive/folders/1wE1NPFNUEFWSYHNmeZeydugWa3D0w0mK"
   }
 ]

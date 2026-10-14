@@ -26,13 +26,10 @@ const externalLink = (url, className, text) =>
 const socials = list(site.social).filter((s) => safeUrl(s.url));
 const categories = [...new Set(projects.map((p) => p.category))];
 const sections = [
-  ["about", "About", list(site.about).length > 0],
-  ["services", "Services", list(site.services).length > 0],
-  ["skills", "Skills", list(site.skills).length > 0],
-  ["work", "Work", true],
-  ["kind-words", "Kind words", list(site.testimonials).length > 0],
+  ["about", "About", true],
+  ["work", "Works", true],
   ["contact", "Contact", true],
-].filter((s) => s[2]);
+];
 
 function clientsHTML() {
   const logos = list(site.logos);
@@ -74,10 +71,10 @@ function homeHTML() {
 <div class="portrait zoom">${media(site.photo, site.name, site.name)}</div></section>
 ${clientsHTML()}
 ${list(site.about).length ? section("about", "About", about) : ""}
-${services ? section("services", "Services I offer", `<div class="grid">${services}</div>`) : ""}
-${list(site.skills).length ? section("skills", "My expertise", `<ul class="chips">${list(site.skills).map((s) => `<li>${esc(s)}</li>`).join("")}</ul>`) : ""}
+
+
 ${section("work", "Work samples", workHTML())}
-${quotes ? section("kind-words", "Kind words", `<div class="grid">${quotes}</div>`) : ""}
+
 ${section("contact", "Let's work together", `<p class="lead">Get in touch through any of the options below.</p><div class="cta">${contactLinks}</div>`)}
 <footer>&copy; ${new Date().getFullYear()} ${esc(site.name)}. ${esc(site.role)}.</footer>`;
 }
