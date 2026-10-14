@@ -12,5 +12,5 @@ Connect the GitHub repo. Build command `npm run build`, publish directory `dist`
 ## Updating content
 Edit these files, commit, and Netlify rebuilds by itself:
 - `src/data/site.json`: name, tagline, about text, services, skills, client logos, kind words, email and social links. A social link with an empty `url` is hidden.
-- `src/data/projects.json`: one entry per piece of work (`slug` must be unique, lowercase, with dashes only).
+- `src/data/projects.json`: one entry per card in Work samples: `title`, `brand`, `category`, `summary`, `link` (a Google Doc or Drive folder shared as "Anyone with the link") and optional `cta` button text. Categories become the filter tabs automatically.
 - `public/images/`: put pictures here and refer to them as `/images/file-name.jpg` (for `photo`, `cover` and logo `image`). An empty value shows a coloured placeholder.

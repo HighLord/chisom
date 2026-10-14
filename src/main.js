@@ -6,7 +6,7 @@ const STAR_COUNT = 70;
 const STAR_DRIFT = 0.06;
 const TWO_PI = Math.PI * 2;
 const MIN_LOGO_ITEMS = 10;
-const MENU_CLOSE_KEY = "Escape";
+const ALL_LABEL = "All Work";
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -20,10 +20,12 @@ const media = (src, alt, label) =>
   src
     ? `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy">`
     : `<div class="ph" role="img" aria-label="${esc(alt)}"><span>${esc(initials(label))}</span></div>`;
+const externalLink = (url, className, text) =>
+  `<a class="${className}" href="${esc(safeUrl(url))}" target="_blank" rel="noopener noreferrer">${text}</a>`;
 
 const socials = list(site.social).filter((s) => safeUrl(s.url));
+const categories = [...new Set(projects.map((p) => p.category))];
 const sections = [
-  ["home", "Home", true],
   ["about", "About", list(site.about).length > 0],
   ["services", "Services", list(site.services).length > 0],
   ["skills", "Skills", list(site.skills).length > 0],
@@ -31,12 +33,6 @@ const sections = [
   ["kind-words", "Kind words", list(site.testimonials).length > 0],
   ["contact", "Contact", true],
 ].filter((s) => s[2]);
-
-function socialLinks(className) {
-  return `<ul class="${className}">${socials
-    .map((s) => `<li><a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`)
-    .join("")}</ul>`;
-}
 
 function clientsHTML() {
   const logos = list(site.logos);
@@ -51,120 +47,68 @@ function clientsHTML() {
 
 function workHTML() {
   if (!projects.length) return `<p class="muted">New work is on its way.</p>`;
-  const rows = projects
+  const tabs = [ALL_LABEL, ...categories]
+    .map((c, i) => `<button type="button" class="tab" data-cat="${i ? esc(c) : ""}" aria-pressed="${i === 0}">${esc(c)}</button>`)
+    .join("");
+  const cards = projects
     .map(
-      (p, i) => `<li><a class="row" href="#/work/${esc(p.slug)}" data-i="${i}"><span class="thumb zoom">${media(p.cover, p.title, p.title)}</span><span class="rt">${esc(p.title)}</span><span class="rc">${esc(p.category)}</span></a></li>`
+      (p) => `<article class="card glow wcard" data-cat="${esc(p.category)}"><p class="eyebrow">${esc(p.brand || p.category)}</p><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p>${safeUrl(p.link) ? externalLink(p.link, "more", `${esc(p.cta || "Read document")} &rarr;`) : ""}</article>`
     )
     .join("");
-  const first = projects[0];
-  return `<div class="work"><ul class="rows">${rows}</ul><div class="preview zoom" id="preview" aria-hidden="true">${media(first.cover, first.title, first.title)}</div></div>`;
+  return `<div class="tabs" role="group" aria-label="Filter work">${tabs}</div><div class="grid" id="cards">${cards}</div>`;
 }
 
 function homeHTML() {
   const section = (id, title, body) => `<section id="${id}" class="sec reveal"><h2>${title}</h2>${body}</section>`;
   const about = list(site.about).map((t) => `<p>${esc(t)}</p>`).join("");
+  const services = list(site.services)
+    .map((s, i) => `<div class="card glow"><span class="num">${String(i + 1).padStart(2, "0")}</span><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`)
+    .join("");
+  const quotes = list(site.testimonials)
+    .map((t) => `<figure class="card glow"><blockquote>${esc(t.quote)}</blockquote><figcaption>${esc(t.author)}${t.role ? ", " + esc(t.role) : ""}</figcaption></figure>`)
+    .join("");
+  const contactLinks = [`<a class="btn" href="mailto:${esc(site.email)}">Email</a>`, ...socials.map((s) => externalLink(s.url, "btn ghost", esc(s.label)))].join("");
   return `
-<section id="home" class="hero"><p class="eyebrow">${esc(site.role)}</p><h1>${esc(site.name)}</h1><p class="lead">${esc(site.tagline)}</p>
-<div class="cta"><a class="btn" href="#/" data-goto="work">See my work</a><a class="btn ghost" href="#/" data-goto="contact">Contact me</a></div></section>
+<section id="home" class="hero"><div><p class="eyebrow">${esc(site.role)}</p><h1>${esc(site.tagline)}</h1><p class="lead">${esc(site.intro)}</p>
+<div class="cta"><a class="btn" href="#work">View my work</a><a class="btn ghost" href="#contact">Let's work together</a></div></div>
+<div class="portrait zoom">${media(site.photo, site.name, site.name)}</div></section>
 ${clientsHTML()}
-${list(site.about).length ? section("about", "About", `<div class="about"><div class="portrait zoom">${media(site.photo, site.name, site.name)}</div><div>${about}</div></div>`) : ""}
-${list(site.services).length ? section("services", "Services", `<div class="grid">${list(site.services).map((s) => `<div class="card glow"><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></div>`).join("")}</div>`) : ""}
-${list(site.skills).length ? section("skills", "Skills", `<ul class="chips">${list(site.skills).map((s) => `<li>${esc(s)}</li>`).join("")}</ul>`) : ""}
-${section("work", "Work", workHTML())}
-${list(site.testimonials).length ? section("kind-words", "Kind words", `<div class="grid">${list(site.testimonials).map((t) => `<figure class="card glow"><blockquote>${esc(t.quote)}</blockquote><figcaption>${esc(t.author)}${t.role ? ", " + esc(t.role) : ""}</figcaption></figure>`).join("")}</div>`) : ""}
-${section("contact", "Contact", `<p>Have a project in mind? Let's talk.</p><p><a class="btn" href="mailto:${esc(site.email)}">${esc(site.email)}</a></p>${socials.length ? socialLinks("links") : ""}`)}
-<footer>&copy; ${new Date().getFullYear()} ${esc(site.name)}</footer>`;
-}
-
-function projectHTML(p) {
-  const link = safeUrl(p.link);
-  return `<article class="project"><a class="back" href="#/" data-goto="work">&larr; Back to work</a>
-<div class="pcover zoom">${media(p.cover, p.title, p.title)}</div>
-<p class="eyebrow">${esc(p.category)}</p><h1>${esc(p.title)}</h1><p class="lead">${esc(p.summary)}</p>
-<ul class="chips">${list(p.skills).map((s) => `<li>${esc(s)}</li>`).join("")}</ul>
-${list(p.body).map((t) => `<p>${esc(t)}</p>`).join("")}
-${link ? `<p><a class="btn" href="${esc(link)}" target="_blank" rel="noopener noreferrer">View live</a></p>` : ""}</article>`;
+${list(site.about).length ? section("about", "About", about) : ""}
+${services ? section("services", "Services I offer", `<div class="grid">${services}</div>`) : ""}
+${list(site.skills).length ? section("skills", "My expertise", `<ul class="chips">${list(site.skills).map((s) => `<li>${esc(s)}</li>`).join("")}</ul>`) : ""}
+${section("work", "Work samples", workHTML())}
+${quotes ? section("kind-words", "Kind words", `<div class="grid">${quotes}</div>`) : ""}
+${section("contact", "Let's work together", `<p class="lead">Get in touch through any of the options below.</p><div class="cta">${contactLinks}</div>`)}
+<footer>&copy; ${new Date().getFullYear()} ${esc(site.name)}. ${esc(site.role)}.</footer>`;
 }
 
 $("#app").innerHTML = `
-<button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="side"><span></span></button>
-<aside id="side"><a class="brand" href="#/" data-goto="home">${esc(site.name)}</a>
-<nav aria-label="Main">${sections.map(([id, label]) => `<a href="#/" data-goto="${id}" data-nav="${id}">${label}</a>`).join("")}</nav>
-${socials.length ? socialLinks("links side-links") : ""}</aside>
-<main><div id="home-view">${homeHTML()}</div><div id="project-view" hidden></div></main>`;
+<header><a class="brand" href="#home">${esc(site.name)}</a>
+<button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+<nav id="nav" aria-label="Main">${sections.map(([id, label]) => `<a href="#${id}" data-nav="${id}">${label}</a>`).join("")}</nav></header>
+<main>${homeHTML()}</main>`;
+document.title = `${site.name} | ${site.role}`;
 
-const homeView = $("#home-view");
-const projectView = $("#project-view");
-const side = $("#side");
+const nav = $("#nav");
 const burger = $("#burger");
-let pendingSection = null;
-let homeScrollY = 0;
-
-const setActive = (id) =>
-  document.querySelectorAll("[data-nav]").forEach((a) => (a.dataset.nav === id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
-
-function scrollToPending() {
-  const target = pendingSection && document.getElementById(pendingSection);
-  pendingSection = null;
-  if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-}
-
-function showHome() {
-  projectView.hidden = true;
-  homeView.hidden = false;
-  document.title = `${site.name} | ${site.role}`;
-  requestAnimationFrame(() => (pendingSection ? scrollToPending() : window.scrollTo(0, homeScrollY)));
-}
-
-function showProject(slug) {
-  const project = projects.find((p) => p.slug === slug);
-  if (!homeView.hidden) homeScrollY = window.scrollY;
-  homeView.hidden = true;
-  projectView.hidden = false;
-  projectView.innerHTML = project
-    ? projectHTML(project)
-    : `<article class="project"><a class="back" href="#/" data-goto="work">&larr; Back to work</a><h1>Page not found</h1></article>`;
-  document.title = `${project ? project.title : "Not found"} | ${site.name}`;
-  window.scrollTo(0, 0);
-  setActive("work");
-}
-
-function route() {
-  const match = location.hash.match(/^#\/work\/([\w-]+)$/);
-  if (match) showProject(match[1]);
-  else showHome();
-}
-
 const closeMenu = () => {
-  side.classList.remove("open");
+  nav.classList.remove("open");
   burger.setAttribute("aria-expanded", "false");
 };
-
-document.addEventListener("click", (event) => {
-  const link = event.target.closest("[data-goto]");
-  if (!link) return;
-  event.preventDefault();
-  pendingSection = link.dataset.goto;
-  closeMenu();
-  if (homeView.hidden) location.hash = "#/";
-  else scrollToPending();
-});
 burger.addEventListener("click", () => {
-  const open = side.classList.toggle("open");
+  const open = nav.classList.toggle("open");
   burger.setAttribute("aria-expanded", String(open));
 });
-document.addEventListener("keydown", (e) => e.key === MENU_CLOSE_KEY && closeMenu());
-addEventListener("hashchange", route);
+nav.addEventListener("click", (e) => e.target.closest("a") && closeMenu());
+document.addEventListener("keydown", (e) => e.key === "Escape" && closeMenu());
 
-const preview = $("#preview");
-document.querySelectorAll(".row").forEach((row) => {
-  const show = () => {
-    const p = projects[Number(row.dataset.i)];
-    preview.innerHTML = media(p.cover, p.title, p.title);
-  };
-  row.addEventListener("mouseenter", show);
-  row.addEventListener("focus", show);
-});
+// Work filter: each tab shows only the cards of its category; the first tab shows everything.
+document.querySelectorAll(".tab").forEach((tab) =>
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-pressed", String(t === tab)));
+    document.querySelectorAll(".wcard").forEach((card) => (card.hidden = Boolean(tab.dataset.cat) && card.dataset.cat !== tab.dataset.cat));
+  })
+);
 
 const reveal = new IntersectionObserver(
   (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), reveal.unobserve(e.target))),
@@ -173,10 +117,14 @@ const reveal = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((el) => reveal.observe(el));
 
 const spy = new IntersectionObserver(
-  (entries) => entries.forEach((e) => e.isIntersecting && !homeView.hidden && setActive(e.target.id)),
+  (entries) =>
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      document.querySelectorAll("[data-nav]").forEach((a) => (a.dataset.nav === e.target.id ? a.setAttribute("aria-current", "true") : a.removeAttribute("aria-current")));
+    }),
   { rootMargin: "-45% 0px -50% 0px" }
 );
-document.querySelectorAll("#home-view section[id]").forEach((el) => spy.observe(el));
+document.querySelectorAll("main section[id]").forEach((el) => spy.observe(el));
 
 // A slowly drifting field of twinkling points; a few are burnt orange to echo the accent colour.
 function startSky() {
@@ -240,5 +188,3 @@ function startSky() {
 }
 
 startSky();
-route();
-setActive("home");

@@ -1,32 +1,26 @@
 [
   {
-    "slug": "sample-project-1",
-    "title": "Sample project 1",
-    "category": "Website copy",
-    "summary": "A short sentence about what this piece of writing achieved.",
-    "skills": ["Conversion copywriting", "Messaging"],
-    "cover": "",
-    "link": "",
-    "body": ["Describe the project here: the client's problem, what was written, and the result."]
+    "title": "Copywriting Portfolio",
+    "brand": "Copywriting",
+    "category": "Copywriting",
+    "summary": "A collection of copywriting samples.",
+    "cta": "Open folder",
+    "link": "https://drive.google.com/drive/folders/1-1PskNkfbwGi7HTF9TEwBRxHwrobkA0l"
   },
   {
-    "slug": "sample-project-2",
-    "title": "Sample project 2",
-    "category": "Email marketing",
-    "summary": "A short sentence about what this piece of writing achieved.",
-    "skills": ["Email copy", "Storytelling"],
-    "cover": "",
-    "link": "",
-    "body": ["Describe the project here."]
+    "title": "My Copywriting Portfolio",
+    "brand": "Copywriting",
+    "category": "Copywriting",
+    "summary": "More copywriting samples.",
+    "cta": "Open folder",
+    "link": "https://drive.google.com/drive/folders/1P92F4DvJqeWMRl0KMbbZC2wErSOeLx-X"
   },
   {
-    "slug": "sample-project-3",
-    "title": "Sample project 3",
-    "category": "Content strategy",
-    "summary": "A short sentence about what this piece of writing achieved.",
-    "skills": ["Content marketing", "SEO writing"],
-    "cover": "",
-    "link": "",
-    "body": ["Describe the project here."]
+    "title": "Prodigy Website Content",
+    "brand": "Prodigy",
+    "category": "Website Content",
+    "summary": "Website copy written for Prodigy.",
+    "cta": "Open folder",
+    "link": "https://drive.google.com/drive/folders/1wE1NPFNUEFWSYHNmeZeydugWa3D0w0mK"
   }
 ]
