@@ -42,6 +42,23 @@ function clientsHTML() {
   return `<div class="marquee" aria-label="Clients"><div class="lane"><ul>${items}</ul><ul aria-hidden="true">${items}</ul></div></div>`;
 }
 
+const COVER_PALETTES = [["#1b2d63", "#d9692a"], ["#0f1f4a", "#f08a4b"], ["#24366f", "#b9531c"], ["#122056", "#e07b39"], ["#1a2a5e", "#c75a1e"]];
+const PAGE_ICON = '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/>';
+const ICONS = {
+  "Website Copy": PAGE_ICON,
+  "Email Marketing": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  "Sales Copy & Scripts": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>',
+  "Ads & Product Copy": '<path d="M3 11v2a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/>',
+  Newsletters: '<path d="M5 4h11a2 2 0 0 1 2 2v13H7a2 2 0 0 1-2-2z"/><path d="M9 8h5M9 12h5M9 16h3"/>',
+  "Blog & Articles": '<path d="M4 20l4-1 10-10-3-3L5 16z"/><path d="m14 6 3 3"/>',
+};
+
+// Every piece gets a designed cover generated from its title and category, so no image files are needed.
+function coverHTML(p, index, kind = "") {
+  const [from, to] = COVER_PALETTES[index % COVER_PALETTES.length];
+  return `<div class="cover ${kind}" style="--c1:${from};--c2:${to}" aria-hidden="true"><svg class="cicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">${ICONS[p.category] || PAGE_ICON}</svg><span class="ctag">${esc(p.brand || p.category)}</span><span class="ctitle">${esc(p.title)}</span></div>`;
+}
+
 function workHTML() {
   if (!projects.length) return `<p class="muted">New work is on its way.</p>`;
   const tabs = [ALL_LABEL, ...categories]
@@ -49,7 +66,7 @@ function workHTML() {
     .join("");
   const cards = projects
     .map(
-      (p) => `<article class="card glow wcard" data-cat="${esc(p.category)}"><p class="eyebrow">${esc(p.brand || p.category)}</p><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p>${safeUrl(p.link) ? externalLink(p.link, "more", `${esc(p.cta || "Read document")} &rarr;`) : ""}</article>`
+      (p, i) => `<article class="card glow wcard" data-cat="${esc(p.category)}">${coverHTML(p, i)}<div class="cbody"><p class="eyebrow">${esc(p.category)} &middot; ${p.minutes} min read</p><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><button type="button" class="more" data-open="${esc(p.slug)}">Read this piece &rarr;</button></div></article>`
     )
     .join("");
   return `<div class="tabs" role="group" aria-label="Filter work">${tabs}</div><div class="grid" id="cards">${cards}</div>`;
@@ -83,7 +100,8 @@ $("#app").innerHTML = `
 <header><a class="brand" href="#home">${esc(site.name)}</a>
 <button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
 <nav id="nav" aria-label="Main">${sections.map(([id, label]) => `<a href="#${id}" data-nav="${id}">${label}</a>`).join("")}</nav></header>
-<main>${homeHTML()}</main>`;
+<main>${homeHTML()}</main>
+<dialog id="reader" aria-label="Reading view"></dialog>`;
 document.title = `${site.name} | ${site.role}`;
 
 const nav = $("#nav");
@@ -106,6 +124,62 @@ document.querySelectorAll(".tab").forEach((tab) =>
     document.querySelectorAll(".wcard").forEach((card) => (card.hidden = Boolean(tab.dataset.cat) && card.dataset.cat !== tab.dataset.cat));
   })
 );
+
+// Reader: each piece opens in a dialog on this page, so visitors never leave the portfolio.
+const reader = $("#reader");
+const READ_HASH = /^#read=([\w-]+)$/;
+const piecesBySlug = new Map(projects.map((p, i) => [p.slug, { p, i }]));
+let readToken = 0;
+
+async function showReader(slug) {
+  const entry = piecesBySlug.get(slug);
+  if (!entry) return hideReader();
+  const { p, i } = entry;
+  const siblings = projects.filter((x) => x.category === p.category);
+  const next = siblings[(siblings.indexOf(p) + 1) % siblings.length];
+  reader.innerHTML = `<div class="rwrap"><button type="button" class="rclose" data-close aria-label="Close">&times;</button>${coverHTML(p, i, "banner")}
+<article class="rbody"><p class="eyebrow">${esc(p.category)} &middot; ${p.minutes} min read</p><h2>${esc(p.title)}</h2><div class="prose"><p class="muted">Loading...</p></div>
+${siblings.length > 1 ? `<button type="button" class="btn ghost rnext" data-open="${esc(next.slug)}">Next in ${esc(p.category)} &rarr;</button>` : ""}</article></div>`;
+  if (!reader.open) {
+    reader.showModal();
+    document.body.classList.add("noscroll");
+  }
+  reader.scrollTop = 0;
+  const token = ++readToken;
+  const prose = $(".prose", reader);
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}works/${slug}.html`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const html = await res.text();
+    // The pages are sanitized to plain text tags when they are converted (see scripts/convert_works.py).
+    if (token === readToken) prose.innerHTML = html;
+  } catch (error) {
+    if (token === readToken) prose.innerHTML = '<p class="muted">Sorry, this piece could not be loaded. Please try again.</p>';
+  }
+}
+
+const hideReader = () => reader.open && reader.close();
+const syncReader = () => {
+  const match = location.hash.match(READ_HASH);
+  if (match) showReader(match[1]);
+  else hideReader();
+};
+
+// Opening adds a history entry, so the phone's Back button closes the piece instead of leaving the site.
+document.addEventListener("click", (e) => {
+  const opener = e.target.closest("[data-open]");
+  if (opener) {
+    history[reader.open ? "replaceState" : "pushState"](null, "", `#read=${opener.dataset.open}`);
+    syncReader();
+    return;
+  }
+  if (e.target === reader || e.target.closest("[data-close]")) reader.close();
+});
+reader.addEventListener("close", () => {
+  document.body.classList.remove("noscroll");
+  if (READ_HASH.test(location.hash)) history.back();
+});
+addEventListener("popstate", syncReader);
 
 const reveal = new IntersectionObserver(
   (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), reveal.unobserve(e.target))),
@@ -185,3 +259,4 @@ function startSky() {
 }
 
 startSky();
+syncReader();
