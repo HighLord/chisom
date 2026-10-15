@@ -183,7 +183,8 @@ addEventListener("popstate", syncReader);
 
 const reveal = new IntersectionObserver(
   (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), reveal.unobserve(e.target))),
-  { threshold: 0.12 }
+  // A fixed share of the section is not used: the Work section can be taller than a phone screen, so that share would never be visible.
+  { threshold: 0, rootMargin: "0px 0px -8% 0px" }
 );
 document.querySelectorAll(".reveal").forEach((el) => reveal.observe(el));
 
