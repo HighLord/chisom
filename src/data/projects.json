@@ -1,42 +1,282 @@
 [
   {
-    "title": "Website Copy Portfolio",
-    "brand": "Website Copy",
+    "slug": "sales-funnel-landing-page",
+    "title": "Sales Funnel Landing Page",
     "category": "Website Copy",
-    "summary": "Landing pages, website content, and brand messaging samples.",
-    "cta": "View Sample",
-    "link": "https://drive.google.com/drive/folders/1-1PskNkfbwGi7HTF9TEwBRxHwrobkA0l"
+    "brand": "Funnel templates",
+    "summary": "A high-energy landing page for a library of winning sales pages and funnels.",
+    "minutes": 4
   },
   {
-    "title": "Email Marketing Portfolio",
-    "brand": "Email Marketing",
+    "slug": "prodigy-home-page",
+    "title": "Prodigy Tech Hub: Home Page",
+    "category": "Website Copy",
+    "brand": "Prodigy",
+    "summary": "Homepage copy for an enterprise software and AI automation company.",
+    "minutes": 2
+  },
+  {
+    "slug": "prodigy-about-page",
+    "title": "Prodigy: About Page",
+    "category": "Website Copy",
+    "brand": "Prodigy",
+    "summary": "The story and vision behind a practical tech education brand.",
+    "minutes": 3
+  },
+  {
+    "slug": "prodigy-academy",
+    "title": "Prodigy Academy",
+    "category": "Website Copy",
+    "brand": "Prodigy",
+    "summary": "A learn, build and earn page for a hands-on skills programme.",
+    "minutes": 4
+  },
+  {
+    "slug": "workforceos",
+    "title": "WorkforceOS",
+    "category": "Website Copy",
+    "brand": "WorkforceOS",
+    "summary": "Product page copy for workforce operations software.",
+    "minutes": 8
+  },
+  {
+    "slug": "truecheck",
+    "title": "TrueCheck",
+    "category": "Website Copy",
+    "brand": "TrueCheck",
+    "summary": "Product page copy for a brand protection tool that fights counterfeits.",
+    "minutes": 8
+  },
+  {
+    "slug": "uduf-boot-camp",
+    "title": "UDUF Leadership and Business Boot Camp",
+    "category": "Website Copy",
+    "brand": "UDUF",
+    "summary": "Event page copy for a leadership and business boot camp.",
+    "minutes": 2
+  },
+  {
+    "slug": "problem-aware-emails",
+    "title": "Problem-Aware Email Series",
     "category": "Email Marketing",
-    "summary": "Welcome sequences, onboarding emails, sales emails, and customer engagement campaigns.",
-    "cta": "View Sample",
-    "link": "https://drive.google.com/drive/folders/1-JBAn79Kz_mEL2UBrDpYkxDjaafYg8Ue"
+    "brand": "Wellness",
+    "summary": "Emails for readers who feel the problem but don't yet know the solution.",
+    "minutes": 2
   },
   {
-    "title": "Copywriting Collection",
-    "brand": "Copywriting",
-    "category": "Copywriting",
-    "summary": "A collection of persuasive copywriting samples and marketing content.",
-    "cta": "View Sample",
-    "link": "https://drive.google.com/drive/folders/1P92F4DvJqeWMRl0KMbbZC2wErSOeLx-X"
+    "slug": "email-sales-copy-vsl",
+    "title": "Email Sales Copy for a VSL",
+    "category": "Email Marketing",
+    "brand": "Weight loss",
+    "summary": "Emails that move readers to watch a video sales letter.",
+    "minutes": 2
   },
   {
-    "title": "Prodigy Website Content",
-    "brand": "Website Content",
-    "category": "Website Content",
-    "summary": "Website pages and content created for Prodigy.",
-    "cta": "View Sample",
-    "link": "https://drive.google.com/drive/folders/1wE1NPFNUEFWSYHNmeZeydugWa3D0w0mK"
+    "slug": "kyc-onboarding-emails",
+    "title": "KYC Activation & Onboarding Sequence",
+    "category": "Email Marketing",
+    "brand": "Palremit",
+    "summary": "Emails that nudge new users to verify and activate their wallet.",
+    "minutes": 3
   },
   {
-    "title": "Advertising & Sales Scripts",
-    "brand": "Advertising Copy",
-    "category": "Advertising Copy",
-    "summary": "Creative advertisements, sales copy, and video script samples.",
-    "cta": "View Sample",
-    "link": "https://drive.google.com/drive/folders/1wE1NPFNUEFWSYHNmeZeydugWa3D0w0mK"
+    "slug": "card-upgrade-email",
+    "title": "Card Upgrade Announcement",
+    "category": "Email Marketing",
+    "brand": "Palremit",
+    "summary": "A short announcement email about an upgraded card.",
+    "minutes": 1
+  },
+  {
+    "slug": "welcome-nurture-sequence",
+    "title": "Welcome & Onboarding Nurture Sequence",
+    "category": "Email Marketing",
+    "brand": "FitForge Academy",
+    "summary": "A welcome sequence for a wellness brand's new members.",
+    "minutes": 7
+  },
+  {
+    "slug": "abandoned-cart-emails",
+    "title": "Abandoned Cart Emails",
+    "category": "Email Marketing",
+    "brand": "E-commerce",
+    "summary": "A recovery sequence for shoppers who left items behind.",
+    "minutes": 2
+  },
+  {
+    "slug": "marketing-pipeline-emails",
+    "title": "Marketing Pipeline Emails",
+    "category": "Email Marketing",
+    "brand": "Tech",
+    "summary": "Follow-up emails for prospects who are not ready to buy yet.",
+    "minutes": 3
+  },
+  {
+    "slug": "weight-loss-sales-letter",
+    "title": "Weight Loss Sales Letter",
+    "category": "Sales Copy & Scripts",
+    "brand": "Health",
+    "summary": "A long-form sales letter for a 30-day weight loss programme.",
+    "minutes": 6
+  },
+  {
+    "slug": "acne-sales-page",
+    "title": "Acne Solution Sales Page",
+    "category": "Sales Copy & Scripts",
+    "brand": "Skincare",
+    "summary": "Benefit-led sales copy for a natural acne treatment.",
+    "minutes": 3
+  },
+  {
+    "slug": "prolanze-vsl",
+    "title": "Prolanze Video Sales Letter",
+    "category": "Sales Copy & Scripts",
+    "brand": "Prolanze",
+    "summary": "A video script for Nigerians living outside the country.",
+    "minutes": 4
+  },
+  {
+    "slug": "free-training-promo",
+    "title": "Free Training Promotional Copy",
+    "category": "Sales Copy & Scripts",
+    "brand": "Training",
+    "summary": "Short, punchy copy that drives registrations.",
+    "minutes": 1
+  },
+  {
+    "slug": "video-ad-script",
+    "title": "Video Ad Script: Free Digital Marketing Training",
+    "category": "Sales Copy & Scripts",
+    "brand": "Training",
+    "summary": "A promotional video ad script.",
+    "minutes": 1
+  },
+  {
+    "slug": "haircare-spec-ads",
+    "title": "Spec Ads for a Haircare Brand",
+    "category": "Ads & Product Copy",
+    "brand": "Haircare",
+    "summary": "Ad concepts for a naturally derived haircare line.",
+    "minutes": 3
+  },
+  {
+    "slug": "startup-ad-copy",
+    "title": "Startup Founder Ad Copy",
+    "category": "Ads & Product Copy",
+    "brand": "Startups",
+    "summary": "Ad copy aimed at ambitious startup founders.",
+    "minutes": 2
+  },
+  {
+    "slug": "led-product-description",
+    "title": "LED Light Product Description",
+    "category": "Ads & Product Copy",
+    "brand": "E-commerce",
+    "summary": "A short, vivid product description.",
+    "minutes": 1
+  },
+  {
+    "slug": "fintech-newsletter-markets",
+    "title": "Fintech Newsletter: Markets Wrap",
+    "category": "Newsletters",
+    "brand": "Fintech",
+    "summary": "A weekly newsletter on how markets react ahead of the Fed.",
+    "minutes": 4
+  },
+  {
+    "slug": "fintech-newsletter-crypto",
+    "title": "Fintech Newsletter: Crypto Outlook",
+    "category": "Newsletters",
+    "brand": "Fintech",
+    "summary": "A newsletter on what could drive the next crypto run.",
+    "minutes": 4
+  },
+  {
+    "slug": "friendly-pet-newsletter",
+    "title": "Friendly Pet Newsletter",
+    "category": "Newsletters",
+    "brand": "Pets",
+    "summary": "A warm, conversational newsletter for dog owners.",
+    "minutes": 2
+  },
+  {
+    "slug": "driving-schools-norfolk",
+    "title": "15 Best Driving Schools in Norfolk, VA",
+    "category": "Blog & Articles",
+    "brand": "SEO article",
+    "summary": "A 2023 review roundup written for search.",
+    "minutes": 15
+  },
+  {
+    "slug": "driving-schools-new-haven",
+    "title": "15 Best Driving Schools in New Haven",
+    "category": "Blog & Articles",
+    "brand": "SEO article",
+    "summary": "A 2023 review roundup written for search.",
+    "minutes": 14
+  },
+  {
+    "slug": "emotionally-intelligent-kids",
+    "title": "Raising Emotionally Intelligent Kids",
+    "category": "Blog & Articles",
+    "brand": "Parenting",
+    "summary": "Five parenting strategies that work.",
+    "minutes": 4
+  },
+  {
+    "slug": "top-skills-2026",
+    "title": "Top Skills Employers Will Look for in 2026",
+    "category": "Blog & Articles",
+    "brand": "Careers",
+    "summary": "Which skills matter next year and how to learn them quickly.",
+    "minutes": 6
+  },
+  {
+    "slug": "why-no-investment-returns",
+    "title": "Why People Don't See Returns on Their Investments",
+    "category": "Blog & Articles",
+    "brand": "Finance",
+    "summary": "An article on the common reasons investments underperform.",
+    "minutes": 7
+  },
+  {
+    "slug": "africans-abroad-finances",
+    "title": "Why Many Africans Abroad Still Struggle Financially",
+    "category": "Blog & Articles",
+    "brand": "Fintech",
+    "summary": "An article for Africans in the diaspora earning more but saving less.",
+    "minutes": 4
+  },
+  {
+    "slug": "future-of-the-unbanked",
+    "title": "The Future of the Unbanked and How Palremit Bridges the Gap",
+    "category": "Blog & Articles",
+    "brand": "Palremit",
+    "summary": "A story-led article on financial inclusion.",
+    "minutes": 5
+  },
+  {
+    "slug": "policy-watch-central-banks",
+    "title": "Policy Watch: Central Banks Are Tightening Rules",
+    "category": "Blog & Articles",
+    "brand": "Fintech",
+    "summary": "What tighter rules mean for money movement.",
+    "minutes": 6
+  },
+  {
+    "slug": "fintech-nations-africa-exports",
+    "title": "Leading the Charge: Fintech Nations Driving Africa's Export Growth",
+    "category": "Blog & Articles",
+    "brand": "Fintech",
+    "summary": "How fintech is reshaping trade across Africa.",
+    "minutes": 3
+  },
+  {
+    "slug": "fed-meeting-cross-border-payments",
+    "title": "How the October 2025 Fed Meeting Could Shape Cross-Border Payments",
+    "category": "Blog & Articles",
+    "brand": "Fintech",
+    "summary": "Why a US rate decision matters for payments everywhere.",
+    "minutes": 4
   }
 ]
